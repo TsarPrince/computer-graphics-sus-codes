@@ -7,9 +7,11 @@ import Native from "../utils/Native";
 
 // const DEFAULT_X = [65, 25], DEFAULT_Y = [100, 30]; // m = 1.75 cursed case
 // const DEFAULT_X = [25, 65], DEFAULT_Y = [30, 100]; // m = 1.75
-const DEFAULT_X = [25, 65], DEFAULT_Y = [80, 100]; // m = 0.5
+// const DEFAULT_X = [25, 65], DEFAULT_Y = [80, 100]; // m = 0.5
 // const DEFAULT_X = [25, 65], DEFAULT_Y = [130, 100]; // m = -0.75
 // const DEFAULT_X = [125, 90], DEFAULT_Y = [30, 100]; // m = -2
+
+const DEFAULT_X = [20, 30], DEFAULT_Y = [10, 18]; // m = 0.8 from Hearn & Baker (Example 3.1 Page 91)
 
 export default function Home() {
   const [inputX, setInputX] = useState(DEFAULT_X);

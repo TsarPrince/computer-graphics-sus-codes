@@ -23,15 +23,17 @@ const Bresenham = (inputX, inputY, ctx) => {
   let y = y1;
   put_pixel(x, y, pixels, ctx);
 
+  // CASE 1 : |m| = infinity
+
   if (Math.abs(m) == Infinity) {
     if (y > y2) [y, y2] = [y2, y];
     while (y != y2) {
       y++;
       put_pixel(x, y, pixels, ctx);
     }
-    const timeEnd = performance.now();
-    return { pixels, m, approxTime: timeEnd - timeStart };
   } else {
+    // CASE 2.1 : |m| < 1
+
     if (Math.abs(m) < 1) {
       while (x != x2) {
         x++;
@@ -45,6 +47,8 @@ const Bresenham = (inputX, inputY, ctx) => {
         }
       }
     } else {
+      // CASE 2.2 : |m| >= 1
+
       while (y != y2) {
         y++;
         if (p < 0) {
