@@ -24,10 +24,16 @@ const DDA = (inputX, inputY, ctx) => {
         y += m;
         put_pixel(x, Math.round(y), pixels, ctx);
       }
-    } else {
+    } else if (m >= 1) {
       while (y != y2) {
         y++;
         x += 1 / m;
+        put_pixel(Math.round(x), y, pixels, ctx);
+      }
+    } else if (m <= -1) {
+      while (y != y2) {
+        y--;
+        x -= 1 / m;
         put_pixel(Math.round(x), y, pixels, ctx);
       }
     }
