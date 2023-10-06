@@ -4,36 +4,36 @@ const DDA = (inputX, inputY, ctx) => {
   const timeStart = performance.now();
   const pixels = [];
 
-  const [x1, x2] = inputX;
-  const [y1, y2] = inputY;
+  let [x1, x2] = inputX;
+  let [y1, y2] = inputY;
   let x = x1;
   let y = y1;
-  put_pixel(x, y, pixels, ctx);
 
   const m = (y2 - y1) / (x2 - x1);
 
-  if (m == Infinity) {
+  if (Math.abs(m) == Infinity) {
+    if (y > y2) [y, y2] = [y2, y];
+    put_pixel(x, y, pixels, ctx);
+
     while (y != y2) {
       y++;
       put_pixel(x, y, pixels, ctx);
     }
   } else {
-    if (m > -1 && m < 1) {
+    if (Math.abs(m) < 1) {
+      if (x > x2) [x, y, x2, y2] = [x2, y2, x, y];
+      put_pixel(x, y, pixels, ctx);
       while (x != x2) {
         x++;
         y += m;
         put_pixel(x, Math.round(y), pixels, ctx);
       }
-    } else if (m >= 1) {
+    } else {
+      if (y > y2) [x, y, x2, y2] = [x2, y2, x, y];
+      put_pixel(x, y, pixels, ctx);
       while (y != y2) {
         y++;
         x += 1 / m;
-        put_pixel(Math.round(x), y, pixels, ctx);
-      }
-    } else if (m <= -1) {
-      while (y != y2) {
-        y--;
-        x -= 1 / m;
         put_pixel(Math.round(x), y, pixels, ctx);
       }
     }
